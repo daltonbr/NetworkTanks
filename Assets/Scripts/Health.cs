@@ -48,7 +48,10 @@ public class Health : NetworkBehaviour
     {
         if(isLocalPlayer)
         {
-            transform.position = Vector3.zero;
+            //transform.position = Vector3.zero;
+            var spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+            var chosenPoint = Random.Range(0, spawnPoints.Length);
+            transform.position = spawnPoints[chosenPoint].transform.position;
         }
     }
 }
