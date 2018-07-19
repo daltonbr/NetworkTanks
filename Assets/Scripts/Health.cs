@@ -24,7 +24,9 @@ public class Health : NetworkBehaviour
         var newHealth = currentHealth - howMuch;
         if (newHealth <= 0)
         {
-            Debug.Log("Dead");
+            //Debug.Log("Dead");
+            RpcDeath();
+            currentHealth = maxHealth;
         }
         else
         {
@@ -35,5 +37,18 @@ public class Health : NetworkBehaviour
     void OnHealthChange(int updatedHealth)
     {
         HealthScore.text = updatedHealth.ToString();
+    }
+
+    /// <summary>
+    /// Remote Procedure Call (Rpc) to deal with the Player's death.
+    /// An Rpc is a method that's issued on the server, but executed on the clients.
+    /// </summary>
+    [ClientRpc]
+    void RpcDeath()
+    {
+        if(isLocalPlayer)
+        {
+            transform.position = Vector3.zero;
+        }
     }
 }

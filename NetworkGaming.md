@@ -67,3 +67,7 @@ Implements a **client server** scheme where **one player** in the network game a
 **CommandAttribute**
 class in UnityEngine.NetworkingOther
 This is an attribute that can be put on methods of NetworkBehaviour classes to allow them to be **invoked on the server** by sending a command **from a client**.
+
+**Remote Procedure Call**
+We put the prefix **Rpc** in our method. It's like the above Command, but in reverse.
+An Rpc is a method that's issued on the server, but executed on the clients.
